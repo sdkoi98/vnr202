@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import imgTiepQuan from "./tiep-quan-thu-do-1954.jpg";
+import imgBacHo from "./bac-ho-tai-dai-hoi-dang.jpg";
+import imgXeTang from "./xe-tang-tien-vao-dinh-doc-lap.jpg";
+import imgDamDong from "./nhan-dan-mung-giai-phong-30-4.jpg";
 
 /* ============================================================
    CHƯƠNG 2 (1954–1975) — Website nhiều trang
@@ -415,7 +419,7 @@ function BoiCanh({ go }) {
         </ul></Reveal>
 
         <Figure
-          src="/img/tiep-quan-thu-do-1954.jpg"
+          src={imgTiepQuan}
           alt="Bộ đội tiến vào tiếp quản Thủ đô trong niềm vui của nhân dân, năm 1954"
           cap="Miền Bắc hoàn toàn giải phóng — nhân dân đón đoàn quân tiến về tiếp quản Thủ đô (1954)."
           credit="Nguồn: Ảnh tư liệu – TTXVN"
@@ -455,7 +459,7 @@ function BoiCanh({ go }) {
           </p></Reveal>
 
           <Figure
-            src="/img/bac-ho-tai-dai-hoi-dang.jpg"
+            src={imgBacHo}
             alt="Chủ tịch Hồ Chí Minh phát biểu tại Đại hội Đảng"
             cap="Chủ tịch Hồ Chí Minh phát biểu tại Đại hội — Đảng đề ra đường lối cho cách mạng hai miền."
             credit="Nguồn: Ảnh tư liệu – TTXVN"
@@ -629,13 +633,13 @@ function DaiThang({ go }) {
           </div>
           <Gallery items={[
             {
-              src: "/img/xe-tang-tien-vao-dinh-doc-lap.jpg",
+              src: imgXeTang,
               alt: "Xe tăng Quân Giải phóng tiến vào Dinh Độc Lập trưa 30/4/1975",
               cap: "Xe tăng Quân Giải phóng tiến vào Dinh Độc Lập, trưa 30/4/1975.",
               credit: "Nguồn: Ảnh tư liệu – TTXVN",
             },
             {
-              src: "/img/nhan-dan-mung-giai-phong-30-4.jpg",
+              src: imgDamDong,
               alt: "Nhân dân Sài Gòn và bộ đội mừng ngày giải phóng trước Dinh Độc Lập",
               cap: "Nhân dân Sài Gòn hòa cùng đoàn quân giải phóng mừng ngày toàn thắng.",
               credit: "Nguồn: Ảnh tư liệu – TTXVN",

@@ -209,6 +209,17 @@ const STYLE = `
 .foot b{font-family:'Oswald',sans-serif;color:var(--vang);text-transform:uppercase;letter-spacing:.06em;font-size:15px;}
 .foot small{font-size:13px;line-height:1.6;}
 
+/* ---------- FIGURE / GALLERY ---------- */
+.figure{margin:30px 0 0;background:#fff;border:1px solid var(--kem-dam);padding:10px;border-radius:3px;
+  box-shadow:0 2px 0 rgba(0,0,0,.04);}
+.figure img{display:block;width:100%;height:auto;border-radius:2px;background:var(--kem-dam);}
+.figure figcaption{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:12.5px;
+  color:var(--muc-nhat);padding:12px 6px 4px;border-top:2px solid var(--vang);margin-top:10px;line-height:1.45;}
+.figure figcaption .credit{display:block;margin-top:6px;font-style:italic;text-transform:none;letter-spacing:0;
+  font-size:11.5px;color:#9A8C78;font-family:'Be Vietnam Pro',sans-serif;}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;}
+.gallery .figure{margin:0;}
+
 /* ---------- REVEAL ---------- */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:none;}
@@ -220,7 +231,7 @@ const STYLE = `
   .nav-links{display:none;}
   .burger{display:block;}
   .mobile-menu{display:block;}
-  .g2,.g3,.duo,.toc-grid{grid-template-columns:1fr;}
+  .g2,.g3,.duo,.toc-grid,.gallery{grid-template-columns:1fr;}
   .duo .south{border-left:0;border-top:2px solid var(--muc);}
   .hero-star{width:340px;right:-120px;}
 }
@@ -259,6 +270,38 @@ const Reveal = ({ children, className = "", delay = 0 }) => {
 
 const Parallel = ({ label = "Vĩ tuyến 17" }) => (
   <div className="parallel"><div className="line" /><div className="lab">{label}</div><div className="line" /></div>
+);
+
+const Figure = ({ src, alt, cap, credit }) => (
+  <Reveal>
+    <figure className="figure">
+      <img src={src} alt={alt} loading="lazy" />
+      {(cap || credit) && (
+        <figcaption>
+          {cap}
+          {credit && <span className="credit">{credit}</span>}
+        </figcaption>
+      )}
+    </figure>
+  </Reveal>
+);
+
+const Gallery = ({ items }) => (
+  <div className="gallery">
+    {items.map((it, i) => (
+      <Reveal key={it.src} delay={i * 80}>
+        <figure className="figure">
+          <img src={it.src} alt={it.alt} loading="lazy" />
+          {(it.cap || it.credit) && (
+            <figcaption>
+              {it.cap}
+              {it.credit && <span className="credit">{it.credit}</span>}
+            </figcaption>
+          )}
+        </figure>
+      </Reveal>
+    ))}
+  </div>
 );
 
 const PAGES = [
@@ -371,6 +414,13 @@ function BoiCanh({ go }) {
           <li>Theo Hiệp định, sau hai năm sẽ tổng tuyển cử thống nhất đất nước, nhưng Hoa Kỳ và chính quyền Sài Gòn đã từ chối thực hiện.</li>
         </ul></Reveal>
 
+        <Figure
+          src="/img/tiep-quan-thu-do-1954.jpg"
+          alt="Bộ đội tiến vào tiếp quản Thủ đô trong niềm vui của nhân dân, năm 1954"
+          cap="Miền Bắc hoàn toàn giải phóng — nhân dân đón đoàn quân tiến về tiếp quản Thủ đô (1954)."
+          credit="Nguồn: Ảnh tư liệu – TTXVN"
+        />
+
         <Reveal><Parallel /></Reveal>
 
         <Reveal><p className="lead" style={{ marginTop: 0 }}>
@@ -403,6 +453,13 @@ function BoiCanh({ go }) {
           <Reveal><p className="lead">
             Trước tình hình đất nước bị chia cắt lâu dài, Đảng xác định phải kết hợp chặt chẽ giữa xây dựng và bảo vệ Tổ quốc.
           </p></Reveal>
+
+          <Figure
+            src="/img/bac-ho-tai-dai-hoi-dang.jpg"
+            alt="Chủ tịch Hồ Chí Minh phát biểu tại Đại hội Đảng"
+            cap="Chủ tịch Hồ Chí Minh phát biểu tại Đại hội — Đảng đề ra đường lối cho cách mạng hai miền."
+            credit="Nguồn: Ảnh tư liệu – TTXVN"
+          />
 
           <div className="grid g2">
             <Reveal>
@@ -570,6 +627,21 @@ function DaiThang({ go }) {
               </Reveal>
             ))}
           </div>
+          <Gallery items={[
+            {
+              src: "/img/xe-tang-tien-vao-dinh-doc-lap.jpg",
+              alt: "Xe tăng Quân Giải phóng tiến vào Dinh Độc Lập trưa 30/4/1975",
+              cap: "Xe tăng Quân Giải phóng tiến vào Dinh Độc Lập, trưa 30/4/1975.",
+              credit: "Nguồn: Ảnh tư liệu – TTXVN",
+            },
+            {
+              src: "/img/nhan-dan-mung-giai-phong-30-4.jpg",
+              alt: "Nhân dân Sài Gòn và bộ đội mừng ngày giải phóng trước Dinh Độc Lập",
+              cap: "Nhân dân Sài Gòn hòa cùng đoàn quân giải phóng mừng ngày toàn thắng.",
+              credit: "Nguồn: Ảnh tư liệu – TTXVN",
+            },
+          ]} />
+
           <Reveal><div className="quote" style={{ marginTop: 30, background: "var(--do)" }}>
             <p style={{ fontFamily: "'Oswald',sans-serif", textTransform: "uppercase", fontSize: 22, letterSpacing: ".02em" }}>
               30/4/1975 — Đại thắng mùa Xuân kết thúc thắng lợi cuộc kháng chiến chống Mỹ cứu nước.

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import imgTiepQuan from "./tiep-quan-thu-do-1954.jpg";
+import imgTiepQuan from "./tiep-quan-thu-do-1954.png";
 import imgBacHo from "./bac-ho-tai-dai-hoi-dang.jpg";
 import imgXeTang from "./xe-tang-tien-vao-dinh-doc-lap.jpg";
 import imgDamDong from "./nhan-dan-mung-giai-phong-30-4.jpg";
